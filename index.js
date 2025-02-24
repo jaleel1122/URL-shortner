@@ -3,7 +3,7 @@ const express = require("express")
 const mongoose = require('mongoose')
 const shortid = require ('shortid')
 const urlSchema = require('./Model/Url') 
-const port = 8000;
+const port = process.env.PORT || 3000;
 const app = express()
 
 app.use(express.json())
@@ -25,7 +25,7 @@ app.get('/:id', async(req,res)=>{
    res.end()
 })
 
-mongoose.connect('mongodb://127.0.0.1:27017/')
+mongoose.connect(process.env.DATABASE_URL)
 .then(()=> console.log('database connected'))
 .catch(()=> console.log("error"))
 
